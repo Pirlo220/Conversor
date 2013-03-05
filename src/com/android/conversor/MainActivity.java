@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
     public void convertir(View v)
     {
     	String tagPulsado = String.valueOf(v.getTag());
-    	DecimalFormat df = new DecimalFormat("#.00000");
+    	DecimalFormat df = new DecimalFormat("0.000");
     	Double resultado = 0.0;
     	Double cantidad;
     	EditText TVcantidad = (EditText)findViewById(R.id.EVCantidad);    	
@@ -49,7 +49,9 @@ public class MainActivity extends Activity {
     		resultado = cantidad * YEN;
     		TVResultadoTexto.setText("Valor convertiodo a ¥:");
     	}
-    	TVResultadoCantidad.setText((resultado.toString()));
+    	
+    	String r = df.format(resultado);
+    	TVResultadoCantidad.setText(r);
     }
     
 }

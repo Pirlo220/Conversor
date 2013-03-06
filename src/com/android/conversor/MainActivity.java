@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,28 +31,41 @@ public class MainActivity extends Activity {
     	String tagPulsado = String.valueOf(v.getTag());
     	DecimalFormat df = new DecimalFormat("0.000");
     	Double resultado = 0.0;
-    	Double cantidad;
-    	EditText TVcantidad = (EditText)findViewById(R.id.EVCantidad);    	
-    	cantidad = Double.parseDouble(TVcantidad.getText().toString());
+    	Log.v("1", "antes");
+    	EditText TVcantidad = (EditText)findViewById(R.id.EVCantidad); 
+    	Log.v("1", "despues");
     	
-    	if(tagPulsado.equals("dolar"))
-    	{
-    		TVResultadoTexto.setText("Valor convertiodo a $:");
-    		resultado =  cantidad * DOLAR;    		
+    	if(TVcantidad.getText().toString().length() > 0)
+    	{    
+    		Log.v("1", "dentro");
+    		Double cantidadIntroducida = Double.parseDouble(TVcantidad.getText().toString());    	
+    	
+	    	if(tagPulsado.equals("dolar"))    	
+	    	{
+	    		TVResultadoTexto.setText(R.string.convertidoDolar);
+	    		resultado =  cantidadIntroducida * DOLAR;    		
+	    	}
+	    	else if(tagPulsado.equals("libra"))
+	    	{
+	    		TVResultadoTexto.setText(R.string.convertidoLibras);
+	    		resultado = cantidadIntroducida * LIBRA;    		
+	    	}
+	    	else if(tagPulsado.equals("yen"))
+	    	{
+	    		resultado = cantidadIntroducida * YEN;
+	    		TVResultadoTexto.setText(R.string.convertidoYen);
+	    	}
+	    	
+	    	String r = df.format(resultado);
+	    	TVResultadoCantidad.setText(r);	    	
     	}
-    	else if(tagPulsado.equals("libra"))
+    	else
     	{
-    		TVResultadoTexto.setText("Valor convertiodo a £:");
-    		resultado = cantidad * LIBRA;    		
-    	}
-    	else if(tagPulsado.equals("yen"))
-    	{
-    		resultado = cantidad * YEN;
-    		TVResultadoTexto.setText("Valor convertiodo a ¥:");
+    		Log.v("1", TVcantidad.getText().toString());
+    		TVResultadoCantidad.setText(R.string.errorCantidadNoIntroducida);
     	}
     	
-    	String r = df.format(resultado);
-    	TVResultadoCantidad.setText(r);
+    	
     }
     
 }

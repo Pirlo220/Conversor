@@ -4,5 +4,13 @@
     <string name="app_name">Conversor</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="tituloIntroducir">Introducir valor en €</string>
+    <string name="simboloDolar">$</string>
+    <string name="simboloLibra">£</string>
+    <string name="simboloYen">¥</string>
+    <string name="convertidoLibras">Valor convertiodo a £:</string>
+    <string name="convertidoDolar">Valor convertiodo a $:</string>
+    <string name="convertidoYen">Valor convertiodo a ¥:</string>
+    <string name="errorCantidadNoIntroducida">Introduce una cantidad</string>
 
 </resources>
